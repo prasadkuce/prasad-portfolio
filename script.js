@@ -50,7 +50,8 @@
 
   /* ── reveal on scroll ────────────────────────────────── */
   var targets = document.querySelectorAll('.section, .hero__text, .card, .stats');
-  if ('IntersectionObserver' in window) {
+  // A deep link jumps straight into the page; animating from there flashes blank.
+  if ('IntersectionObserver' in window && !window.location.hash) {
     Array.prototype.forEach.call(targets, function (el) { el.classList.add('reveal'); });
     var reveal = new IntersectionObserver(function (entries, obs) {
       entries.forEach(function (entry) {
